@@ -1,6 +1,7 @@
 # This script contains all the util functions we use for data preparation
 
 from os import listdir
+import spacy
 
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
@@ -35,6 +36,7 @@ def clean_raw_text(raw_texts):
 def normalize_tokens(word_list, extra_stop=[]):
     #We can use a generator here as we just need to iterate over it
     normalized = []
+    nlp = spacy.load('es')
     if type(word_list) == list and len(word_list) == 1:
         word_list = word_list[0]
 
