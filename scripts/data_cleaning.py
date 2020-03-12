@@ -31,3 +31,28 @@ def clean_raw_text(raw_texts):
             print("Unicode Error, Skip")
             continue
     return ' '.join(clean_texts)
+
+def normalize_tokens(word_list, extra_stop=[]):
+    #We can use a generator here as we just need to iterate over it
+    normalized = []
+    if type(word_list) == list and len(word_list) == 1:
+        word_list = word_list[0]
+
+    if type(word_list) == list:
+        word_list = ' '.join([str(elem) for elem in word_list]) 
+
+    doc = nlp(word_list.lower())
+    
+    # add the property of stop word to words considered as stop words
+    if len(extra_stop) > 0:
+        for stopword in extra_stop:
+            lexeme = nlp.vocab[stopword]
+            lexeme.is_stop = True
+
+    for w in doc:
+        # if it's not a stop word or punctuation mark, add it to our article
+        if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text.strip()) > 0:
+            # we add the lematized version of the word
+            normalized.append(str(w.lemma_))
+
+    return normalized
