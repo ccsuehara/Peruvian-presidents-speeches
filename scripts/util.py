@@ -1,4 +1,4 @@
-def plo_silhouette(n_clusters, X, reduced_data, pca):
+def plot_silhouette(n_clusters, X, reduced_data, pca):
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize = (15,5))
     
     ax1.set_xlim([-0.1, 1])
