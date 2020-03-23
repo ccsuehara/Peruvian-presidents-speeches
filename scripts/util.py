@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm
 import sklearn.cluster
 import sklearn.metrics
+import numpy as np
 
 def plot_silhouette(n_clusters, X, reduced_data, pca):
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize = (15,5))
