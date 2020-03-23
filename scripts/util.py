@@ -1,3 +1,7 @@
+# Script containing all the functions we call in our analysis
+
+import matplotlib.pyplot as plt
+
 def plot_silhouette(n_clusters, X, reduced_data, pca):
     fig, (ax1, ax2) = plt.subplots(ncols=2, figsize = (15,5))
     
