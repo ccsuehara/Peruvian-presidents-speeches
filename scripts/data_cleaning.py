@@ -2,6 +2,7 @@
 
 from os import listdir
 import spacy
+import re
 
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
@@ -22,6 +23,7 @@ def clean_raw_text(raw_texts):
                 text = text.decode("utf-8")
             clean_text = text.replace(" \'m", "'m").replace(" \'ll", "'ll").replace(" \'re", "'re").replace(" \'s", "'s").replace(" \'re", "'re").replace(" n\'t", "n't").replace(" \'ve", "'ve").replace(" /'d", "'d")
             clean_text = clean_text.replace("\n", "").replace("\xa0", "").replace("\x0c", "")
+            clean_text = re.sub(' {2,}', ' ')
             if not (clean_text == '' or clean_text == ' '):
                 clean_texts.append(clean_text)
         except AttributeError:
