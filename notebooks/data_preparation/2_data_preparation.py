@@ -13,9 +13,14 @@
 
 import pandas as pd
 import re
-from lucem_illud_2020 import 
 import spacy
 from nltk.tokenize import sent_tokenize
+
+try:
+    from lucem_illud_2020 import word_tokenize
+except ImportError:
+    get_ipython().system('pip3 install lxml --user')
+    from lucem_illud_2020 import word_tokenize
 
 import sys
 sys.path.insert(0, '../../scripts')
@@ -125,7 +130,7 @@ speech.head()
 # In[9]:
 
 
-speech['tokenized_words'] = speech['cleaned text'].apply(lambda x: lucem_illud_2020.word_tokenize(x))
+speech['tokenized_words'] = speech['cleaned text'].apply(lambda x: word_tokenize(x))
 
 
 # In[10]:
@@ -176,7 +181,7 @@ speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
 # In[15]:
 
 
-speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lambda x: [lucem_illud_2020.word_tokenize(s) for s in x])
+speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lambda x: [word_tokenize(s) for s in x])
 
 
 # In[20]:
