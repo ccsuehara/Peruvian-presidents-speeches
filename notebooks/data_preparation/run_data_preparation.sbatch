@@ -11,4 +11,5 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
+pip3 install lxml --user
 python3 2_data_preparation.py
