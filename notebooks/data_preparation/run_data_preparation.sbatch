@@ -6,7 +6,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --output=sbatch/2_data_preparation.out
 #SBATCH --error=sbatch/2_data_preparation.err
-#SBATCH --partition=fast
+#SBATCH --partition=general
 #SBATCH --mem-per-cpu=10000
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
