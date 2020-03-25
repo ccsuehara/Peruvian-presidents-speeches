@@ -4,8 +4,8 @@
 # In[17]:
 
 
-#get_ipython().run_line_magic('load_ext', 'autoreload')
-#get_ipython().run_line_magic('autoreload', '2')
+#%load_ext autoreload
+#%autoreload 2
 
 
 # In[2]:
@@ -13,7 +13,7 @@
 
 import pandas as pd
 import re
-import lucem_illud_2020
+from lucem_illud_2020 import 
 import spacy
 from nltk.tokenize import sent_tokenize
 
