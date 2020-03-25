@@ -1,0 +1,3 @@
+scripts/__pycache__/*
+notebooks/analysis/.ipynb_checkpoints/*
+notebooks/data_preparation/.ipynb_checkpoints/*
