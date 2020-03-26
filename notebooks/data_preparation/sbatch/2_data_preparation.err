@@ -1,0 +1,8 @@
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Could not connect: Connection refused
+Failed to connect to Mir: Failed to connect to server socket: No such file or directory
+Unable to init server: Could not connect: Connection refused
+
+(2_data_preparation.py:14645): Gdk-CRITICAL **: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+
+(2_data_preparation.py:14645): Gdk-CRITICAL **: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
