@@ -10,8 +10,8 @@ Final project for SOCI 40133: Computational Content Analysis, Winter 2020 at UCh
 
 This analysis was conducted by the authors for the Computational Content Analysis course at the University of Chicago. The study analyzes a corpora of texts from the annual presidential speeches of Peru and applies a number of computational content analysis techniques to obtain political and historical insights and compare them with the main theories of ideas from political scientists studying Peru. The authors benefited greatly from the resources of the [Linux servers](https://howto.cs.uchicago.edu/techstaff:slurm) at the University of Chicago Computer Science department.
 
-(Final presentation)[https://github.com/ccsuehara/Peruvian-presidents-speeches/blob/master/documents/Exploratory%20content%20analysis%20of%20the%20presidential%20speeches%20of%20Peru%2C%201956-2019.pdf]
-(Final report)[]
+[Final presentation](https://github.com/ccsuehara/Peruvian-presidents-speeches/blob/master/documents/Exploratory%20content%20analysis%20of%20the%20presidential%20speeches%20of%20Peru%2C%201956-2019.pdf)
+[Final report](https://github.com/ccsuehara/Peruvian-presidents-speeches/blob/master/documents/final-report_Exploratory_Content_Analysis___Peru_Presidential_Speeches.pdf)
 
 ## Setup
 
