@@ -4,6 +4,8 @@ from os import listdir
 import spacy
 import re
 
+NLP = spacy.load('es_core_news_lg')
+
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
     for file in listdir(corpus_name + "/"):
@@ -38,19 +40,19 @@ def clean_raw_text(raw_texts):
 def normalize_tokens(word_list, extra_stop=[]):
     #We can use a generator here as we just need to iterate over it
     normalized = []
-    nlp = spacy.load('es')
+
     if type(word_list) == list and len(word_list) == 1:
         word_list = word_list[0]
 
     if type(word_list) == list:
-        word_list = ' '.join([str(elem) for elem in word_list]) 
+        word_list = ' '.join([str(elem) for elem in word_list])
 
-    doc = nlp(word_list.lower())
-    
+    doc = NLP(word_list.lower())
+
     # add the property of stop word to words considered as stop words
     if len(extra_stop) > 0:
         for stopword in extra_stop:
-            lexeme = nlp.vocab[stopword]
+            lexeme = NLP.vocab[stopword]
             lexeme.is_stop = True
 
     for w in doc:
@@ -60,3 +62,12 @@ def normalize_tokens(word_list, extra_stop=[]):
             normalized.append(str(w.lemma_))
 
     return normalized
+
+def word_tokenize(text):
+    tokenized = []
+    # pass word list through language model.
+    doc = NLP(text)
+    for token in doc:
+        if not token.is_punct and len(token.text.strip()) > 0:
+            tokenized.append(token.text)
+    return tokenized
