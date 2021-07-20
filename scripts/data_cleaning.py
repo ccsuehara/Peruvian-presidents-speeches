@@ -17,16 +17,26 @@ def loadcorpus(corpus_name, corpus_style="text"):
                 texts_raw[file].append(line)
     return texts_raw
 
+def text_is_number(text):
+    try:
+        float(text)
+        return True
+    except ValueError:
+        return False
+
 def clean_raw_text(raw_texts):
     clean_texts = []
     for text in raw_texts:
         try:
             if type(text) == bytes:
                 text = text.decode("utf-8")
-            clean_text = text.replace(" \'m", "'m").replace(" \'ll", "'ll").replace(" \'re", "'re").replace(" \'s", "'s").replace(" \'re", "'re").replace(" n\'t", "n't").replace(" \'ve", "'ve").replace(" /'d", "'d")
-            clean_text = clean_text.replace("\n", "").replace("\xa0", "").replace("\x0c", "")
+            clean_text = text.replace("\n", "")
+            clean_text = clean_text.replace("\xa0", "")
+            clean_text = clean_text.replace("\x0c", "")
             clean_text = re.sub(' {2,}', ' ', clean_text)
-            if not (clean_text == '' or clean_text == ' '):
+            if not (clean_text == '' \
+                    or clean_text == ' ' \
+                    or text_is_number(clean_text)):
                 clean_texts.append(clean_text)
         except AttributeError:
             print("ERROR CLEANING")
