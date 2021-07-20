@@ -5,6 +5,7 @@ import spacy
 import re
 
 NLP = spacy.load('es_core_news_lg')
+STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor']
 
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
@@ -47,7 +48,7 @@ def clean_raw_text(raw_texts):
             continue
     return ' '.join(clean_texts)
 
-def normalize_tokens(word_list, extra_stop=[]):
+def normalize_tokens(word_list, extra_stop=STOP_WORDS):
     #We can use a generator here as we just need to iterate over it
     normalized = []
 
