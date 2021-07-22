@@ -65,7 +65,9 @@ speech.loc[(speech['year'].astype('int32') >= 1995) &            (speech['year']
 speech.loc[(speech['year'].astype('int32') >= 2001) &            (speech['year'].astype('int32') <= 2005), 'administration'] = 'Toledo'
 speech.loc[(speech['year'].astype('int32') >= 2006) &            (speech['year'].astype('int32') <= 2010), 'administration'] = 'Garcia(2)'
 speech.loc[(speech['year'].astype('int32') >= 2011) &            (speech['year'].astype('int32') <= 2015), 'administration'] = 'Humala'
-speech.loc[(speech['year'].astype('int32') >= 2016), 'administration'] = 'Kuzcynski/Vizcarra'
+speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2019), 'administration'] = 'Kuzcynski/Vizcarra'
+speech.loc[(speech['year'].astype('int32') >= 2020) &            (speech['year'].astype('int32') <= 2020), 'administration'] = 'Sagasti'
+
 speech.loc[(speech['year'].astype('int32') >= 1956) &            (speech['year'].astype('int32') <= 1961), 'president'] = 'Prado'
 speech.loc[(speech['year'].astype('int32') >= 1962) &            (speech['year'].astype('int32') <= 1962), 'president'] = 'Lindley'
 speech.loc[(speech['year'].astype('int32') >= 1963) &            (speech['year'].astype('int32') <= 1968), 'president'] = 'Belaunde'
@@ -78,7 +80,14 @@ speech.loc[(speech['year'].astype('int32') >= 2001) &            (speech['year']
 speech.loc[(speech['year'].astype('int32') >= 2006) &            (speech['year'].astype('int32') <= 2010), 'president'] = 'Garcia'
 speech.loc[(speech['year'].astype('int32') >= 2011) &            (speech['year'].astype('int32') <= 2015), 'president'] = 'Humala'
 speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2017), 'president'] = 'Kuzcynski'
-speech.loc[(speech['year'].astype('int32') >= 2018), 'president'] = 'Vizcarra'
+speech.loc[(speech['year'].astype('int32') >= 2018) &            (speech['year'].astype('int32') <= 2019), 'president'] = 'Vizcarra'
+speech.loc[(speech['year'].astype('int32') >= 2020) &            (speech['year'].astype('int32') <= 2020), 'president'] = 'Sagasti'
+
+#Exception for Paniagua
+speech.loc[(speech['year'].astype('int32') == 2000) &            (speech['filename'].astype('str')  == 'mensaje-2000-vp-noviembre.txt'), 'administration'] = 'Paniagua'
+speech.loc[(speech['year'].astype('int32') == 2000) &            (speech['filename'].astype('str')  == 'mensaje-2000-vp-noviembre.txt'), 'president'] = 'Paniagua'
+
+
 speech['year-president'] = speech['year'] + '-' + speech['president']
 
 speech.head()
@@ -126,3 +135,27 @@ speech.head()
 
 # Saving the result:
 speech.to_pickle('../../data/clean/speech.pkl')
+
+
+speech_init = speech.loc[(speech['year'].astype('int32') == 1963) |  
+                         (speech['year'].astype('int32') == 1969) |
+                        (speech['year'].astype('int32') == 1976) |
+                        (speech['year'].astype('int32') == 1980) |
+                        (speech['year'].astype('int32') == 1985) |
+                        (speech['year'].astype('int32') == 1990) |
+                        (speech['year'].astype('int32') == 1995) |
+                        (speech['year'].astype('int32') == 2000) |
+                        (speech['year'].astype('int32') == 2001) |
+                        (speech['year'].astype('int32') == 2006) |
+                        (speech['year'].astype('int32') == 2011) |
+                        (speech['year'].astype('int32') == 2016) |
+                        (speech['year'].astype('int32') == 2000) |
+                        ((speech['year'].astype('int32') == 2018) & (speech['filename'] == 'mensaje-2018-2.txt')) |
+                        (speech['year'].astype('int32') == 2020) ] 
+
+
+
+speech_init.reset_index(drop = True, inplace = True)
+
+speech_init.to_pickle('../../data/clean/speech_init.pkl')
+
