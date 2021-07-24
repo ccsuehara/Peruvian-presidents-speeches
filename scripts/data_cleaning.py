@@ -4,6 +4,9 @@ from os import listdir
 import spacy
 import re
 
+NLP = spacy.load('es_core_news_lg')
+STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor']
+
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
     for file in listdir(corpus_name + "/"):
@@ -15,16 +18,26 @@ def loadcorpus(corpus_name, corpus_style="text"):
                 texts_raw[file].append(line)
     return texts_raw
 
+def text_is_number(text):
+    try:
+        float(text)
+        return True
+    except ValueError:
+        return False
+
 def clean_raw_text(raw_texts):
     clean_texts = []
     for text in raw_texts:
         try:
             if type(text) == bytes:
                 text = text.decode("utf-8")
-            clean_text = text.replace(" \'m", "'m").replace(" \'ll", "'ll").replace(" \'re", "'re").replace(" \'s", "'s").replace(" \'re", "'re").replace(" n\'t", "n't").replace(" \'ve", "'ve").replace(" /'d", "'d")
-            clean_text = clean_text.replace("\n", "").replace("\xa0", "").replace("\x0c", "")
+            clean_text = text.replace("\n", "")
+            clean_text = clean_text.replace("\xa0", "")
+            clean_text = clean_text.replace("\x0c", "")
             clean_text = re.sub(' {2,}', ' ', clean_text)
-            if not (clean_text == '' or clean_text == ' '):
+            if not (clean_text == '' \
+                    or clean_text == ' ' \
+                    or text_is_number(clean_text)):
                 clean_texts.append(clean_text)
         except AttributeError:
             print("ERROR CLEANING")
@@ -35,28 +48,39 @@ def clean_raw_text(raw_texts):
             continue
     return ' '.join(clean_texts)
 
-def normalize_tokens(word_list, extra_stop=[]):
+def normalize_tokens(word_list, extra_stop=STOP_WORDS):
     #We can use a generator here as we just need to iterate over it
     normalized = []
-    nlp = spacy.load('es')
+
     if type(word_list) == list and len(word_list) == 1:
         word_list = word_list[0]
 
-    if type(word_list) == list:
-        word_list = ' '.join([str(elem) for elem in word_list]) 
+    elif type(word_list) == list:
+        word_list = ' '.join([str(elem) for elem in word_list])
 
-    doc = nlp(word_list.lower())
-    
+    doc = NLP(word_list.lower())
+
     # add the property of stop word to words considered as stop words
     if len(extra_stop) > 0:
         for stopword in extra_stop:
-            lexeme = nlp.vocab[stopword]
+            lexeme = NLP.vocab[stopword]
             lexeme.is_stop = True
 
     for w in doc:
         # if it's not a stop word or punctuation mark, add it to our article
-        if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text.strip()) > 0:
+        if w.text != '\n' and not w.is_stop \
+           and not w.is_punct and not w.like_num \
+           and len(w.text.strip()) > 0 and w.is_alpha:
             # we add the lematized version of the word
             normalized.append(str(w.lemma_))
 
     return normalized
+
+def word_tokenize(text):
+    tokenized = []
+    # pass word list through language model.
+    doc = NLP(text)
+    for token in doc:
+        if not token.is_punct and len(token.text.strip()) > 0:
+            tokenized.append(token.text)
+    return tokenized
