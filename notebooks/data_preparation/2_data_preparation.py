@@ -105,7 +105,7 @@ speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
 speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lambda x: [clean.word_tokenize(s) for s in x])
 
 # Finally, we normalized each tokenized word within each sentence:
-speech['normalized_words_in_sentences'] = speech['tokenized_words_in_sentences'].apply(lambda x: [clean.normalize_tokens(s, stop_words) for s in x])
+speech['normalized_words_in_sentences'] = speech['tokenized_words_in_sentences'].apply(lambda x: [clean.normalize_tokens(s) for s in x])
 
 # Saving the result:
 speech.to_pickle('../../data/clean/speech.pkl')
