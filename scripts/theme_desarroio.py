@@ -1,13 +1,8 @@
-import pandas as pd
-import altair as alt
-from vega_datasets import data
-import numpy as np
-
 # no he probado si esta celda funciona porque yo instalé el font por fuera
-# %%html
-# <style>
-# @import url('https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap');
-# </style>
+%%html
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap');
+</style>
 
 def theme_desarroio():
     font = "Sanchez"
