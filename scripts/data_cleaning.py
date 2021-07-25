@@ -31,8 +31,7 @@ def clean_raw_text(raw_texts):
         try:
             if type(text) == bytes:
                 text = text.decode("utf-8")
-            clean_text = text.replace(" \n", "")
-            clean_text = clean_text.replace("\xa0", "")
+            clean_text = text.replace("\xa0", "")
             clean_text = clean_text.replace("\x0c", "")
             clean_text = re.sub(' {2,}', ' ', clean_text)
             if not (clean_text == '' \
