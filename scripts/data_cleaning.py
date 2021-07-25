@@ -55,7 +55,7 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
     if type(word_list) == list and len(word_list) == 1:
         word_list = word_list[0]
 
-    if type(word_list) == list:
+    elif type(word_list) == list:
         word_list = ' '.join([str(elem) for elem in word_list])
 
     doc = NLP(word_list.lower())
@@ -68,7 +68,9 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
 
     for w in doc:
         # if it's not a stop word or punctuation mark, add it to our article
-        if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text.strip()) > 0:
+        if w.text != '\n' and not w.is_stop \
+           and not w.is_punct and not w.like_num \
+           and len(w.text.strip()) > 0 and w.is_alpha:
             # we add the lematized version of the word
             normalized.append(str(w.lemma_))
 

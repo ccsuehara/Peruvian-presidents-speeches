@@ -95,32 +95,8 @@ speech.head()
 # Tokenizing words:
 speech['tokenized_words'] = speech['cleaned text'].apply(lambda x: clean.word_tokenize(x))
 
-# Now we normalize words. First we add as stop words some of
-# the most frequent words:
-countsDict = {}
-for word in speech['tokenized_words'].sum():
-    if word in countsDict:
-        countsDict[word] += 1
-    else:
-        countsDict[word] = 1
-word_counts = sorted(countsDict.items(), key = lambda x : x[1], reverse = True)
-word_counts[:25]
-
-stop_words = []
-for word, count in word_counts:
-    if word == 'al':
-        break
-    else:
-        stop_words.append(word)
-
-# Now we are more stop words, mainly prepositions and articles:
-more_words = ['por', 'al', 'este', 'en', 'como', 'lo', 'el', 'la', 'las', 'los', 'su', 'sus'
-              'y', 'de', 'que', 'a', 'del', 'para', 'con', 'se', 'ante']
-for word in more_words:
-    stop_words.append(word)
-
 # Now we normalize:
-speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens(x, stop_words))
+speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens(x))
 
 # Now we normalize:
 speech['nonlem_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens_no_lemma(x, stop_words))
@@ -134,13 +110,11 @@ speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lam
 # Finally, we normalized each tokenized word within each sentence:
 speech['normalized_words_in_sentences'] = speech['tokenized_words_in_sentences'].apply(lambda x: [clean.normalize_tokens(s, stop_words) for s in x])
 
-speech.head()
-
 # Saving the result:
 speech.to_pickle('../../data/clean/speech.pkl')
 
 
-speech_init = speech.loc[(speech['year'].astype('int32') == 1963) |  
+speech_init = speech.loc[(speech['year'].astype('int32') == 1963) |
                          (speech['year'].astype('int32') == 1969) |
                         (speech['year'].astype('int32') == 1976) |
                         (speech['year'].astype('int32') == 1980) |
@@ -154,11 +128,8 @@ speech_init = speech.loc[(speech['year'].astype('int32') == 1963) |
                         (speech['year'].astype('int32') == 2016) |
                         (speech['year'].astype('int32') == 2000) |
                         ((speech['year'].astype('int32') == 2018) & (speech['filename'] == 'mensaje-2018-2.txt')) |
-                        (speech['year'].astype('int32') == 2020) ] 
-
-
+                        (speech['year'].astype('int32') == 2020) ]
 
 speech_init.reset_index(drop = True, inplace = True)
 
 speech_init.to_pickle('../../data/clean/speech_init.pkl')
-
