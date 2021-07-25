@@ -109,7 +109,6 @@ def theme_desarroio():
                "size": 11,
            }, 
            "bar": {
-                "size": 40,
                 "binSpacing": 1,
                 "continuousBandSize": 30,
                 "discreteBandSize": 30,
