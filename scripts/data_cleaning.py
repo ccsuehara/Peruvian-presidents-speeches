@@ -76,33 +76,6 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
 
     return normalized
 
-
-def normalize_tokens_no_lemma(word_list, extra_stop=STOP_WORDS):
-    #We can use a generator here as we just need to iterate over it
-    normalized = []
-
-    if type(word_list) == list and len(word_list) == 1:
-        word_list = word_list[0]
-
-    if type(word_list) == list:
-        word_list = ' '.join([str(elem) for elem in word_list])
-
-    doc = NLP(word_list.lower())
-
-    # add the property of stop word to words considered as stop words
-    if len(extra_stop) > 0:
-        for stopword in extra_stop:
-            lexeme = NLP.vocab[stopword]
-            lexeme.is_stop = True
-
-    for w in doc:
-        # if it's not a stop word or punctuation mark, add it to our article
-        if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text.strip()) > 0:
-            # we add the non-lematized version of the word
-            normalized.append(str(w))
-
-    return normalized
-
 def word_tokenize(text):
     tokenized = []
     # pass word list through language model.
