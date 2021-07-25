@@ -5,7 +5,7 @@ import spacy
 import re
 
 NLP = spacy.load('es_core_news_lg')
-STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor']
+STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor', 'cuya']
 
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
@@ -31,7 +31,7 @@ def clean_raw_text(raw_texts):
         try:
             if type(text) == bytes:
                 text = text.decode("utf-8")
-            clean_text = text.replace("\n", "")
+            clean_text = text.replace(" \n", "")
             clean_text = clean_text.replace("\xa0", "")
             clean_text = clean_text.replace("\x0c", "")
             clean_text = re.sub(' {2,}', ' ', clean_text)
@@ -46,7 +46,11 @@ def clean_raw_text(raw_texts):
         except UnicodeDecodeError:
             print("Unicode Error, Skip")
             continue
-    return ' '.join(clean_texts)
+
+    cleaned_text = ' '.join(clean_texts)
+    cleaned_text = cleaned_text.replace('\n ', '\n')
+
+    return cleaned_text
 
 def normalize_tokens(word_list, extra_stop=STOP_WORDS):
     #We can use a generator here as we just need to iterate over it
@@ -70,7 +74,7 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
         # if it's not a stop word or punctuation mark, add it to our article
         if w.text != '\n' and not w.is_stop \
            and not w.is_punct and not w.like_num \
-           and len(w.text.strip()) > 0 and w.is_alpha:
+           and len(w.text.strip()) > 1 and w.is_alpha:
             # we add the lematized version of the word
             normalized.append(str(w.lemma_))
 
@@ -84,3 +88,22 @@ def word_tokenize(text):
         if not token.is_punct and len(token.text.strip()) > 0:
             tokenized.append(token.text)
     return tokenized
+
+def paragraph_tokenize(text):
+
+    separator1 = '.\n'
+    separator2 = '. \n'
+    sep = '|||'
+    text = text.replace(separator1, sep).replace(separator2, sep)
+    paragraphs1 = text.split(sep)
+    paragraphs2 = []
+
+    for paragraph in paragraphs1:
+
+        cleaned_paragraph = paragraph.replace('\n', ' ')
+        cleaned_paragraph = cleaned_paragraph.strip()
+        cleaned_paragraph = re.sub(' {2,}', ' ', cleaned_paragraph)
+        if not cleaned_paragraph == '':
+            paragraphs2.append(cleaned_paragraph)
+
+    return paragraphs2
