@@ -122,6 +122,9 @@ for word in more_words:
 # Now we normalize:
 speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens(x, stop_words))
 
+# Now we normalize:
+speech['nonlem_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens_no_lemma(x, stop_words))
+
 # Then, we tokenize sentences using the function from `nltk` for this:
 speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
 
