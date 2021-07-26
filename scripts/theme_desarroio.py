@@ -1,8 +1,4 @@
-# no he probado si esta celda funciona porque yo instalé el font por fuera
-%%html
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Sanchez:ital@0;1&display=swap');
-</style>
+import altair as alt
 
 def theme_desarroio():
     font = "Sanchez"
@@ -10,6 +6,7 @@ def theme_desarroio():
     sourceFont = "Sanchez"
     axisColor = "#000000"
     gridColor = "#DEDDDD"
+    textColor = "808080"
     markColor = "#5297AC" # 25%
     backgroundColor = "#F9F7F3" # 100%
     main_palette = ["#5297AC", # 25%
@@ -97,7 +94,7 @@ def theme_desarroio():
            },
            "text": {
                "font": sourceFont,
-               "color": markColor,
+               "color": textColor,
                "fontSize": 11,
                "align": "right",
                "fontWeight": 400,
