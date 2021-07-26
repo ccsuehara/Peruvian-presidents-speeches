@@ -6,15 +6,15 @@ def theme_desarroio():
     sourceFont = "Sanchez"
     axisColor = "#000000"
     gridColor = "#DEDDDD"
-    textColor = "808080"
+    textColor = "#808080"
     markColor = "#5297AC" # 25%
     backgroundColor = "#F9F7F3" # 100%
     main_palette = ["#5297AC", # 25%
-                    "#A6C6C1", # 12.5%
-                    "#BAA6A5",
+                    "#808080", # 12.5%
+                    "#DEBFB5",
                     "#CAB09A", 
-                    "#808080", 
-                    "#DEBFB5", 
+                    "#BAA6A5", 
+                    "#A6C6C1", 
                     "#55b748", 
                     "#5c5859", 
                     "#db2b27", 
