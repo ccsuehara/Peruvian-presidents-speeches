@@ -5,7 +5,8 @@ import spacy
 import re
 
 NLP = spacy.load('es_core_news_lg')
-STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor', 'cuya']
+STOP_WORDS = ['y', 'a', 'año', 'país', 'o', 'e', 'cuyo', 'señor', 'cuya',
+    'nuevamente', 'don']
 
 def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
