@@ -98,14 +98,23 @@ speech['tokenized_words'] = speech['cleaned text'].apply(lambda x: clean.word_to
 # Now we normalize:
 speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens(x))
 
+# Tokenizing paragraphs:
+speech['tokenized_paragraphs'] = speech['cleaned text'].apply(clean.paragraph_tokenize)
+
+# Tokenizing words in paragraphs:
+speech['tokenized_words_in_paragraphs'] = speech['tokenized_paragraphs'].apply(lambda x: [clean.word_tokenize(p) for p in x])
+
+# Now we normalize the words inside the paragraphs:
+speech['normalized_words_in_paragraphs'] = speech['tokenized_words_in_paragraphs'].apply(lambda x: [clean.normalize_tokens(w) for w in x])
+
 # Then, we tokenize sentences using the function from `nltk` for this:
-speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
+#speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
 
 # Now we tokenize each word in each sentence:
-speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lambda x: [clean.word_tokenize(s) for s in x])
+#speech['tokenized_words_in_sentences'] = speech['tokenized_sentences'].apply(lambda x: [clean.word_tokenize(s) for s in x])
 
 # Finally, we normalized each tokenized word within each sentence:
-speech['normalized_words_in_sentences'] = speech['tokenized_words_in_sentences'].apply(lambda x: [clean.normalize_tokens(s) for s in x])
+#speech['normalized_words_in_sentences'] = speech['tokenized_words_in_sentences'].apply(lambda x: [clean.normalize_tokens(s) for s in x])
 
 # Saving the result:
 speech.to_pickle('../../data/clean/speech.pkl')
