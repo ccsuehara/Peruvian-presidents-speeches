@@ -29,7 +29,7 @@ speeches_dir = '../../data/presidentialSpeechPeru/txt'
 
 # We load the corpus from this path using a helper function we created:
 speeches_raw = clean.loadcorpus(speeches_dir)
-
+print("Loaded speeches")
 
 # After this, we load the result in a data frame and start adding some
 # metadata columns:
@@ -37,7 +37,6 @@ speech = pd.DataFrame()
 filenames = []
 raw = []
 for filename, raw_speech in speeches_raw.items():
-    print(filename)
     filenames.append(filename)
     raw.append(raw_speech)
 speech['filename'] = filenames
@@ -50,7 +49,7 @@ speech = speech.sort_values(by='year').reset_index(drop=True)
 
 # Now we clean these raw texts using another ad-hoc function:
 speech['cleaned text'] = speech['raw text'].apply(lambda x: clean.clean_raw_text(x))
-
+print("Cleaned texts")
 
 # Adding the administration and president of each speech:
 speech.loc[(speech['year'].astype('int32') >= 1956) &            (speech['year'].astype('int32') <= 1961), 'administration'] = 'Prado'
@@ -90,22 +89,27 @@ speech.loc[(speech['year'].astype('int32') == 2000) &            (speech['filena
 
 speech['year-president'] = speech['year'] + '-' + speech['president']
 
-speech.head()
+print("Generated attributes")
 
 # Tokenizing words:
 speech['tokenized_words'] = speech['cleaned text'].apply(lambda x: clean.word_tokenize(x))
+print("Finished word tokenizing")
 
 # Now we normalize:
 speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.normalize_tokens(x))
+print("Finished word normalization")
 
 # Tokenizing paragraphs:
 speech['tokenized_paragraphs'] = speech['cleaned text'].apply(clean.paragraph_tokenize)
+print("Finished paragraph tokenizing")
 
 # Tokenizing words in paragraphs:
 speech['tokenized_words_in_paragraphs'] = speech['tokenized_paragraphs'].apply(lambda x: [clean.word_tokenize(p) for p in x])
+print("Finished word tokenization in paragraphs")
 
 # Now we normalize the words inside the paragraphs:
 speech['normalized_words_in_paragraphs'] = speech['tokenized_words_in_paragraphs'].apply(lambda x: [clean.normalize_tokens(w) for w in x])
+print("Finished word normalization in paragraphs")
 
 # Then, we tokenize sentences using the function from `nltk` for this:
 #speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)
