@@ -12,7 +12,6 @@ def loadcorpus(corpus_name, corpus_style="text"):
     texts_raw = {}
     for file in listdir(corpus_name + "/"):
         file2 = corpus_name + "/" + file
-        print(file)
         texts_raw[file] = []
         with open(file2, encoding='utf-8') as f:
             for line in f:
@@ -71,10 +70,13 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
             lexeme.is_stop = True
 
     for w in doc:
-        # if it's not a stop word or punctuation mark, add it to our article
-        if w.text != '\n' and not w.is_stop \
+        # if it's not a stop word or punctuation mark, add it to our list
+        include = (w.text != '\n' and not w.is_stop \
            and not w.is_punct and not w.like_num \
-           and len(w.text.strip()) > 1 and w.is_alpha:
+           and len(w.text.strip()) > 1 and w.is_alpha \
+           and not w.lemma_ in extra_stop)
+
+        if include:
             # we add the lematized version of the word
             normalized.append(str(w.lemma_))
 
