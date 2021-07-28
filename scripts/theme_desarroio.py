@@ -11,7 +11,7 @@ def theme_desarroio():
     backgroundColor = "#F9F7F3" # 100%
     main_palette = ["#5297AC", # Cluster 1 azul
                     "#ac6e69", # Cluster 2 coral/marrón
-                    "#D78F0A", # Cluster 3 amarillo
+                    "#4ba479", # Cluster 3 verde
                     "#CAB09A", 
                     "#BAA6A5", 
                     "#A6C6C1", 
