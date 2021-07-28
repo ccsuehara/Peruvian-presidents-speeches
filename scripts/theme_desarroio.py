@@ -88,9 +88,15 @@ def theme_desarroio():
                "strokeWidth": 0.1, # no sé que es
            },
            "point": {
-               "filled": False,
+               "filled": True,
                "opacity": 1, # 0.7 default,
                "size": 100, # 30 default,
+           },
+           "circle": {
+               "filled": True,
+               "opacity": 1, # 0.7 default,
+               "size": 100, # 30 default,
+               "color": markColor,
            },
            "text": {
                "font": sourceFont,
