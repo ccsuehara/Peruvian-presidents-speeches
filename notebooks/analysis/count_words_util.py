@@ -26,3 +26,8 @@ def wordCounter(wordLst):
     df.sort_values(['count'], ascending = False, inplace = True)
 
     return df
+
+
+def contar_esp(lst,  palabra):
+    counter = lst.count(palabra)
+    return counter
