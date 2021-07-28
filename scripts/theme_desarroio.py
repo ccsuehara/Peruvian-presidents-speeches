@@ -12,7 +12,7 @@ def theme_desarroio():
     main_palette = ["#5297AC", # Cluster 1 azul
                     "#ac6e69", # Cluster 2 coral/marrón
                     "#4ba479", # Cluster 3 verde
-                    "#CAB09A", 
+                    "#e2a920", 
                     "#BAA6A5", 
                     "#A6C6C1", 
                     "#55b748", 
