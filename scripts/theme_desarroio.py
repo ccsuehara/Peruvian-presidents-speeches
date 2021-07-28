@@ -7,11 +7,11 @@ def theme_desarroio():
     axisColor = "#000000"
     gridColor = "#DEDDDD"
     textColor = "#808080"
-    markColor = "#5297AC" # 25%
+    markColor = "#5297AC" # azul oficial
     backgroundColor = "#F9F7F3" # 100%
-    main_palette = ["#5297AC", # 25%
-                    "#808080", # 12.5%
-                    "#DEBFB5",
+    main_palette = ["#5297AC", # Cluster 1 azul
+                    "#ac6e69", # Cluster 2 coral/marrón
+                    "#4ba479", # Cluster 3 verde
                     "#CAB09A", 
                     "#BAA6A5", 
                     "#A6C6C1", 
@@ -88,9 +88,15 @@ def theme_desarroio():
                "strokeWidth": 0.1, # no sé que es
            },
            "point": {
-               "filled": False,
+               "filled": True,
                "opacity": 1, # 0.7 default,
                "size": 100, # 30 default,
+           },
+           "circle": {
+               "filled": True,
+               "opacity": 1, # 0.7 default,
+               "size": 100, # 30 default,
+               "color": markColor,
            },
            "text": {
                "font": sourceFont,
