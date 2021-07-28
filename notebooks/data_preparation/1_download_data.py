@@ -210,3 +210,11 @@ speech = readPDF(file)
 
 with open(file_prefix_txt + name + '.txt', 'w') as text_file:
         text_file.write(speech)
+
+name = 'mensaje-2021-pct'
+
+file = downloadIfNeeded(url_sagasti,file_prefix_pdf + name + '.pdf' ,mode = 'rb')
+speech = readPDF(file)
+
+with open(file_prefix_txt + name + '.txt', 'w') as text_file:
+        text_file.write(speech)
