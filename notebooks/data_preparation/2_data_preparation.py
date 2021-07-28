@@ -68,6 +68,7 @@ speech.loc[(speech['year'].astype('int32') >= 2011) &            (speech['year']
 speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2017), 'administration'] = 'Kuczynski'
 speech.loc[(speech['year'].astype('int32') >= 2018) &            (speech['year'].astype('int32') <= 2019), 'administration'] = 'Vizcarra'
 speech.loc[(speech['year'].astype('int32') >= 2020) &            (speech['year'].astype('int32') <= 2020), 'administration'] = 'Sagasti'
+speech.loc[(speech['year'].astype('int32') >= 2021) &            (speech['year'].astype('int32') <= 2021), 'administration'] = 'Castillo'
 
 speech.loc[(speech['year'].astype('int32') >= 1956) &            (speech['year'].astype('int32') <= 1961), 'president'] = 'Prado'
 speech.loc[(speech['year'].astype('int32') >= 1962) &            (speech['year'].astype('int32') <= 1962), 'president'] = 'Lindley'
@@ -83,6 +84,7 @@ speech.loc[(speech['year'].astype('int32') >= 2011) &            (speech['year']
 speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2017), 'president'] = 'Kuczynski'
 speech.loc[(speech['year'].astype('int32') >= 2018) &            (speech['year'].astype('int32') <= 2019), 'president'] = 'Vizcarra'
 speech.loc[(speech['year'].astype('int32') >= 2020) &            (speech['year'].astype('int32') <= 2020), 'president'] = 'Sagasti'
+speech.loc[(speech['year'].astype('int32') >= 2021) &            (speech['year'].astype('int32') <= 2021), 'president'] = 'Castillo'
 
 #Exception for Paniagua
 speech.loc[(speech['year'].astype('int32') == 2000) &            (speech['filename'].astype('str')  == 'mensaje-2000-vp-noviembre.txt'), 'administration'] = 'Paniagua'
@@ -140,7 +142,8 @@ speech_init = speech.loc[(speech['year'].astype('int32') == 1963) |
                         (speech['year'].astype('int32') == 2016) |
                         (speech['year'].astype('int32') == 2000) |
                         ((speech['year'].astype('int32') == 2018) & (speech['filename'] == 'mensaje-2018-2.txt')) |
-                        (speech['year'].astype('int32') == 2020) ]
+                        (speech['year'].astype('int32') == 2020) |
+                        (speech['year'].astype('int32') == 2021)]
 
 speech_init.reset_index(drop = True, inplace = True)
 
