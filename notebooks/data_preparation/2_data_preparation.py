@@ -64,7 +64,8 @@ speech.loc[(speech['year'].astype('int32') >= 1995) &            (speech['year']
 speech.loc[(speech['year'].astype('int32') >= 2001) &            (speech['year'].astype('int32') <= 2005), 'administration'] = 'Toledo'
 speech.loc[(speech['year'].astype('int32') >= 2006) &            (speech['year'].astype('int32') <= 2010), 'administration'] = 'Garcia(2)'
 speech.loc[(speech['year'].astype('int32') >= 2011) &            (speech['year'].astype('int32') <= 2015), 'administration'] = 'Humala'
-speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2019), 'administration'] = 'Kuczynski/Vizcarra'
+speech.loc[(speech['year'].astype('int32') >= 2016) &            (speech['year'].astype('int32') <= 2017), 'administration'] = 'Kuczynski'
+speech.loc[(speech['year'].astype('int32') >= 2018) &            (speech['year'].astype('int32') <= 2019), 'administration'] = 'Vizcarra'
 speech.loc[(speech['year'].astype('int32') >= 2020) &            (speech['year'].astype('int32') <= 2020), 'administration'] = 'Sagasti'
 
 speech.loc[(speech['year'].astype('int32') >= 1956) &            (speech['year'].astype('int32') <= 1961), 'president'] = 'Prado'
