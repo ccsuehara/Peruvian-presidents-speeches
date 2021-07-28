@@ -104,16 +104,16 @@ speech['normalized_words'] = speech['tokenized_words'].apply(lambda x: clean.nor
 print("Finished word normalization")
 
 # Tokenizing paragraphs:
-speech['tokenized_paragraphs'] = speech['cleaned text'].apply(clean.paragraph_tokenize)
-print("Finished paragraph tokenizing")
+#speech['tokenized_paragraphs'] = speech['cleaned text'].apply(clean.paragraph_tokenize)
+#print("Finished paragraph tokenizing")
 
 # Tokenizing words in paragraphs:
-speech['tokenized_words_in_paragraphs'] = speech['tokenized_paragraphs'].apply(lambda x: [clean.word_tokenize(p) for p in x])
-print("Finished word tokenization in paragraphs")
+#speech['tokenized_words_in_paragraphs'] = speech['tokenized_paragraphs'].apply(lambda x: [clean.word_tokenize(p) for p in x])
+#print("Finished word tokenization in paragraphs")
 
 # Now we normalize the words inside the paragraphs:
-speech['normalized_words_in_paragraphs'] = speech['tokenized_words_in_paragraphs'].apply(lambda x: [clean.normalize_tokens(w) for w in x])
-print("Finished word normalization in paragraphs")
+#speech['normalized_words_in_paragraphs'] = speech['tokenized_words_in_paragraphs'].apply(lambda x: [clean.normalize_tokens(w) for w in x])
+#print("Finished word normalization in paragraphs")
 
 # Then, we tokenize sentences using the function from `nltk` for this:
 #speech['tokenized_sentences'] = speech['cleaned text'].apply(sent_tokenize)

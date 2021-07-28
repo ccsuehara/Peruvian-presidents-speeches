@@ -73,7 +73,7 @@ def normalize_tokens(word_list, extra_stop=STOP_WORDS):
         # if it's not a stop word or punctuation mark, add it to our list
         include = (w.text != '\n' and not w.is_stop \
            and not w.is_punct and not w.like_num \
-           and len(w.text.strip()) > 1 and w.is_alpha \
+           and len(w.text.strip()) > 1 \
            and not w.lemma_ in extra_stop)
 
         if include:
