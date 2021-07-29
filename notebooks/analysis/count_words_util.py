@@ -31,3 +31,22 @@ def wordCounter(wordLst):
 def contar_esp(lst,  palabra):
     counter = lst.count(palabra)
     return counter
+
+
+def remove_stop(lst, lst_stop):
+    new_lst = []
+    for word in lst: 
+        if word in lst_stop:
+            pass
+        else:
+            new_lst.append(word)
+    return new_lst
+
+
+def count_stops(lst, lst_stop):
+    counter = 0
+    for word in lst: 
+        if word in lst_stop:
+            counter += 1
+
+    return counter
