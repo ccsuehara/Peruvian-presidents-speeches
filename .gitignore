@@ -2,3 +2,5 @@ scripts/__pycache__/*
 */**/.ipynb_checkpoints/*
 .Rproj.user/*
 */**/__pycache__/*
+.Rproj.user
+Peruvian-presidents-speeches.Rproj
